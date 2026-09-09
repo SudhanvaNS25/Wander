@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <!-- Muted warm gradient -->
+    <radialGradient id="mainGradient" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#f5c1c1"/>
+      <stop offset="45%" stop-color="#e07171"/>
+      <stop offset="100%" stop-color="#b93d3d"/>
+    </radialGradient>
+
+    <!-- Very soft orbit line -->
+    <linearGradient id="orbitGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.1"/>
+    </linearGradient>
+
+    <!-- Subtle inner glow -->
+    <radialGradient id="innerGlow" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.4)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+    </radialGradient>
+
+    <!-- Faint glass overlay -->
+    <linearGradient id="glassOverlay" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.25)" />
+      <stop offset="40%" stop-color="rgba(255,255,255,0.1)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0.02)" />
+    </linearGradient>
+
+    <!-- Soft shadow -->
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="rgba(0,0,0,0.25)" />
+    </filter>
+
+    <!-- Gentle glow -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <circle cx="256" cy="256" r="230" fill="url(#mainGradient)" filter="url(#shadow)" />
+
+  <!-- Thin outer ring -->
+  <circle cx="256" cy="256" r="220" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="8"/>
+
+  <!-- Twin orbits -->
+  <ellipse cx="256" cy="260" rx="150" ry="70"
+           fill="none" stroke="url(#orbitGradient)"
+           stroke-width="6" stroke-linecap="round" opacity="0.6"
+           transform="rotate(-15 256 256)" filter="url(#glow)" />
+  <ellipse cx="256" cy="260" rx="125" ry="58"
+           fill="none" stroke="url(#orbitGradient)"
+           stroke-width="4" stroke-linecap="round" opacity="0.35"
+           transform="rotate(12 256 256)" />
+
+  <!-- Travel energy arc -->
+  <path d="M165 305
+           Q256 215, 347 295
+           Q256 260, 165 305 Z"
+        fill="none" stroke="rgba(255,255,255,0.55)"
+        stroke-width="7" stroke-linecap="round"
+        stroke-linejoin="round" opacity="0.7"
+        filter="url(#glow)"/>
+
+  <!-- Location pin -->
+  <path d="M256 150
+           C205 150, 170 190, 170 235
+           C170 295, 256 370, 256 370
+           C256 370, 342 295, 342 235
+           C342 190, 307 150, 256 150 Z"
+        fill="#f9f9f9" opacity="0.85" filter="url(#shadow)" />
+
+  <!-- Inner pin circle -->
+  <circle cx="256" cy="235" r="36" fill="url(#mainGradient)" />
+
+  <!-- Dim center highlight -->
+  <circle cx="256" cy="235" r="10" fill="white" opacity="0.4" />
+  <circle cx="245" cy="225" r="7" fill="white" opacity="0.25" />
+
+  <!-- Inner glow -->
+  <circle cx="256" cy="256" r="190" fill="url(#innerGlow)" opacity="0.3" />
+
+  <!-- Glass overlay -->
+  <circle cx="256" cy="256" r="230" fill="url(#glassOverlay)" />
+
+  <!-- Border -->
+  <circle cx="256" cy="256" r="230" fill="none" stroke="white" stroke-width="6" opacity="0.45"/>
+</svg>

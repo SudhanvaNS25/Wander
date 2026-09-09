@@ -1,0 +1,26 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<div class="row mt-3">
+    <div class="col-6 offset-3">
+        <form action="/signUp" method="POST" class="needs-validation" novalidate>
+            <h2>Sign Up for WonderLust</h2>
+            <br>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username:</label>
+                <input type="text" name="username" id="username" placeholder="Enter Username" class="form-control" required>
+                <div class="valid-feedback">This username is available</div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" name="email" id="email" placeholder="Enter Email" class="form-control" required>
+                <div class="valid-feedback">Good</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Enter Password" class="form-control" required>
+                <div class="valid-feedback">Good</div>
+                <div class="invalid-feedback">This field can't be empty</div>
+            </div>
+            <button class="add-btn btn btn-dark">SignUp</button>
+        </form>
+    </div>
+</div>

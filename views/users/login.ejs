@@ -1,0 +1,19 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<div class="row mt-3">
+    <div class="col-6 offset-3">
+        <form action="/login" method="POST" class="needs-validation" novalidate>
+            <h2>Login for WonderLust</h2>
+            <br>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username:</label>
+                <input type="text" name="username" id="username" placeholder="Enter Username" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Enter Password" class="form-control" required>
+                <div class="invalid-feedback">This field can't be empty</div>
+            </div>
+            <button class="add-btn btn btn-dark">Login</button>
+        </form>
+    </div>
+</div>

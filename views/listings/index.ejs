@@ -1,0 +1,128 @@
+
+  <% layout("/layouts/boilerplate") -%>
+    <!-- <h3>All Listings</h3> -->
+    <!-- <form method="GET" action="/listings/new">
+      <button>Create New Listing</button>
+    </form> -->
+    <style>
+  #filters {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    overflow-x: auto;             /* enables horizontal scroll on small screens */
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    padding: 0.5rem 1rem;
+  }
+  /* hides scrollbar for webkit browsers */
+  #filters::-webkit-scrollbar {
+  display: none;
+} 
+
+  .filter {
+    flex: 0 0 auto;
+    text-align: center;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    min-width: 60px;
+  }
+
+  .filter:hover {
+    opacity: 1;
+    transform: translateY(-3px); /* isse jab hum hower karre hai to upar uthnraha hai */
+    cursor: pointer;
+    color: #e63d42;
+  }
+
+  .filter i {
+    font-size: 1.5rem;
+  }
+
+  .filter p {
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
+  }
+
+ 
+  .filter {
+    text-decoration: none;
+    color: inherit;  /* Ensures links inherit text color */
+  }
+  .tax-toggle{
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    padding: 0.7rem;
+    border: 2px solid #ccc;
+    border-radius: 1rem;
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+  
+  /* Responsive tweaks */
+  @media (max-width: 768px) {
+    .filter i {
+      font-size: 1rem;
+    }
+    .filter p {
+      font-size: 0.6rem;
+    }
+    .tax-toggle {
+      display: none; /* optional: hide toggle on very small screens */
+    }
+  }
+
+  .tax-info {
+    display: none;
+  }
+</style>
+
+<div id="filters">
+    <a href="/listings" class="filter" ><i class="fa-solid fa-fire-flame-curved"></i><p>Trending</p></a>
+    <a href="/listings/category/Nature" class="filter" ><i class="fa-solid fa-tree"></i><p>Nature</p></a>
+    <a href="/listings/category/Villa" class="filter" ><i class="fa-solid fa-house"></i><p>Villa</p></a>
+    <a href="/listings/category/Sea%20Side" class="filter" ><i class="fa-solid fa-umbrella-beach"></i><p>Sea Side</p></a>
+    <a href="/listings/category/Mountain" class="filter" ><i class="fa-solid fa-mountain-sun"></i><p>Mountain</p></a>
+    <a href="/listings/category/Camping" class="filter" ><i class="fa-solid fa-campground"></i><p>Camping</p></a>
+    <a href="/listings/category/Castles" class="filter" ><i class="fa-brands fa-fort-awesome"></i><p>Castles</p></a>
+    <a href="/listings/category/Arctic" class="filter" ><i class="fa-solid fa-snowflake"></i><p>Arctic</p></a>
+    <a href="/listings/category/Iconic%20Cities" class="filter" ><i class="fa-solid fa-mountain-city"></i><p>Iconic Cities</p></a>
+    <a href="/listings/category/Room" class="filter" ><i class="fa-solid fa-bed"></i><p>Room</p></a>
+    <div class="tax-toggle">
+        <div class="form-check form-switch ">
+            <input class="form-check-input " type="checkbox" role="switch" id="switchCheckDefault">
+            <label class="form-check-label tax-toggle-text" for="switchCheckDefault">Display total after Taxes</label>
+        </div>
+    </div>
+</div>
+ <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+   <% for(let listing of allListings) { %>
+ <a href="/listings/<%= listing.id %>" class="listing-link">
+<div class="listing-card card col" >
+ <img src="<%= listing.image.url %>" class="card-img-top" alt="listing image" style="height:20rem">
+ <div class="card-img-overlay">abc</div>
+  <div class="card-body">
+    <p class="card-text">
+      <b> <%= listing.title %></b><br/>
+      &#8377; <%= listing.price.toLocaleString("en-IN") %>/Night
+      <i class="tax-info"> &nbsp; &nbsp; +18% GST</i>
+    </p>
+  </div>
+</div>
+</a> 
+<% } %>
+ </div>
+ <script>
+  let taxSwitch = document.getElementById("switchCheckDefault");
+  taxSwitch.addEventListener("click", ()=>{
+    let taxInfo = document.getElementsByClassName("tax-info");
+    for(info of taxInfo){
+      if(info.style.display == "inline"){
+        info.style.display = "none";
+      } else {
+        info.style.display = "inline";
+      }
+    }
+  });
+</script>
+
