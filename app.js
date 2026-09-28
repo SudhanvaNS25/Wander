@@ -12,6 +12,7 @@ const expressError=require("./utils/expressError");
 const listingRouter=require("./routes/listing.js");
 const reviewRouter=require("./routes/review.js");
 const userRoute=require("./routes/user.js");
+const bookingRouter = require("./routes/booking");
 const session=require("express-session");//Create a session middleware with the given options.
 const { MongoStore } = require("connect-mongo");
 const flash=require("connect-flash");
@@ -31,6 +32,7 @@ async function main() {
 }
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname,"/public")));
@@ -52,7 +54,7 @@ store.on("error", function (e) {
 
 const sessionOption={
     store,
-secret:"mysupersecretstring",
+secret:process.env.SECRET,
 resave:false,
 saveUninitialized:true,
 cookie:{
@@ -83,6 +85,7 @@ app.use((req,res,next) =>{
 app.use("/",userRoute);
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
+app.use("/bookings", bookingRouter);
 
 
 
